@@ -1,30 +1,34 @@
-from flask import Flask, Response, request
-import cv2
+from flask import Flask, request
+from flask_cors import CORS
+import os
+
+# Check if running on macOS
+if os.uname().sysname == 'Darwin':  # macOS
+    from mock_gpio import GPIO
+else:
+    print('Running on Raspberry Pi')
+    import RPi.GPIO as GPIO
 
 app = Flask(__name__)
-camera = cv2.VideoCapture(0)
+CORS(app)  # Enable CORS for all routes
 
-def generate_frames():
-    while True:
-        success, frame = camera.read()
-        if not success:
-            break
-        else:
-            ret, buffer = cv2.imencode('.jpg', frame)
-            frame = buffer.tobytes()
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+# Setup GPIO pins
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(18, GPIO.OUT)  # Example GPIO pin
 
-@app.route('/video_feed')
-def video_feed():
-    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
-
-@app.route('/send_signal', methods=['POST'])
-def send_signal():
+@app.route('/hand_signal', methods=['POST'])
+def hand_signal():
     data = request.json
-    # Process the signal and send it to the robotic hand
-    print(f"Received signal: {data['signal']}")
-    return {'status': 'signal sent'}
+    distances = data['distances']
+    
+    # Process the distances and send commands to the robotic hand
+    # Example: If the first finger is open, turn on the GPIO pin
+    if distances[0] > 50:  # Example threshold
+        GPIO.output(18, GPIO.HIGH)
+    else:
+        GPIO.output(18, GPIO.LOW)
+    
+    return {'status': 'signal received'}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8000)  # Change the port to 8000
