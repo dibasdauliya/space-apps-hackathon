@@ -90,10 +90,10 @@ export default function HomePage() {
             <source src="/space.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black opacity-85"></div>
-          <div className="relative z-10 flex items-center gap-6 justify-center min-h-screen text-left px-4">
+          <div className="relative z-10 flex items-center gap-12 justify-center min-h-screen text-left px-4">
             <section>
               <motion.h2
-                className="text-4xl text-white font-sixtyfour"
+                className="text-4xl text-white font-sixtyfour max-w-2xl"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
@@ -170,7 +170,19 @@ export default function HomePage() {
           </video>
           <div className="absolute inset-0 bg-black opacity-85"></div>
 
-          <div className="relative z-10 flex items-center justify-center min-h-screen text-left gap-8 px-4">
+          <div className="relative z-10 flex items-center justify-center min-h-screen text-left gap-12 px-4">
+            <div className="absolute top-20 left-20 text-center">
+              <motion.h2
+                className="text-3xl mt-8 text-white font-sixtyfour"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+                style={{ y: scrollPosition * 0.1 }}
+              >
+                Our Challenge: Galactic Games: Fun in a Microgravity Environment
+              </motion.h2>
+            </div>
+
             <section>
               <motion.h2
                 className="text-4xl text-white font-sixtyfour"
@@ -324,14 +336,15 @@ export default function HomePage() {
               >
                 <source src="/self-learn-2.MOV" type="video/mp4" />
               </video>
-              <video
+              <img src="/flowchart.png" alt="" className="rounded-md" />
+              {/* <video
                 autoPlay
                 muted
                 loop
                 className="w-[300px] object-cover rounded-md h-52 "
               >
                 <source src="/self-learn.mp4" type="video/mp4" />
-              </video>
+              </video> */}
             </section>
           </>
         }
@@ -398,6 +411,7 @@ export default function HomePage() {
       <HomeSection
         sectionId="section4"
         title="Complete Astrobot Model"
+        className="gap-8"
         leftView={
           <ul className="space-y-4 mt-6 list-disc text-lg text-white max-w-2xl">
             <li>
@@ -431,22 +445,14 @@ export default function HomePage() {
             </li>
           </ul>
         }
-        rightView={<CarView />}
+        // rightView={<CarView />}
+        rightView={
+          <section className="space-y-4 mx-auto grid place-items-center">
+            <img src="/main.jpeg" alt="" width={300} className="rounded-md" />
+            <CarView />
+          </section>
+        }
       />
-
-      <HomeSectionWrapper sectionName="section5">
-        <section>
-          <motion.h2
-            className="text-4xl text-white font-sixtyfour"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            style={{ y: scrollPosition * 0.1 }}
-          >
-            What More Can We Do With Model Changes?
-          </motion.h2>
-        </section>
-      </HomeSectionWrapper>
     </div>
   );
 }
