@@ -330,7 +330,7 @@ export default function HomePage() {
                 loop
                 className="w-[300px] object-cover rounded-md h-52 "
               >
-                <source src="/self-learn.MOV" type="video/mp4" />
+                <source src="/self-learn.mp4" type="video/mp4" />
               </video>
             </section>
           </>
@@ -388,7 +388,7 @@ export default function HomePage() {
                 loop
                 className="w-full rounded-md"
               >
-                <source src="/robo.MOV" type="video/mp4" />
+                <source src="/robo.mp4" type="video/mp4" />
               </video>
             </section>
           </>
