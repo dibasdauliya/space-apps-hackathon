@@ -34,7 +34,7 @@ export default function HomePage() {
           >
             <source src="/video.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-black opacity-65"></div>
+          <div className="absolute inset-0 bg-black opacity-60"></div>
 
           <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center px-4">
             <motion.h1
@@ -70,11 +70,11 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* <img
+          <img
             src="/sunn.png"
             alt="Sun"
             className="absolute inset-0 w-full h-full -z-1 opacity-40 animate-"
-          /> */}
+          />
         </div>
       </Element>
 
