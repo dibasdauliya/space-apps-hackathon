@@ -48,7 +48,7 @@ export default function HomePage() {
             </motion.h1>
           </div>
 
-          <span className="absolute top-8 left-8 font-semibold [text-shadow:_0_.5px_0_rgb(0_0_0_/_40%)] bg-gray-800 px-2 rounded-md bg-opacity-45">
+          {/* <span className="absolute top-8 left-8 font-semibold [text-shadow:_0_.5px_0_rgb(0_0_0_/_40%)] bg-gray-800 px-2 rounded-md bg-opacity-45">
             Calibrating, self-learning, and performing
           </span>
           <span className="absolute top-[600px] left-[490px] font-semibold [text-shadow:_0_.5px_0_rgb(0_0_0_/_40%)] bg-gray-800 px-2 rounded-md bg-opacity-45">
@@ -56,7 +56,7 @@ export default function HomePage() {
           </span>
           <span className="absolute top-8 right-8 font-semibold [text-shadow:_0_.5px_0_rgb(0_0_0_/_40%)] bg-gray-800 px-2 rounded-md bg-opacity-45">
             Radio transmission and adaptive gesture control
-          </span>
+          </span> */}
 
           <div className="absolute bottom-10 w-full flex justify-center z-10">
             <Link to="section2" smooth={true} duration={500}>
