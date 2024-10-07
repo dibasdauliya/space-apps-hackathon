@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { Canvas, useLoader } from "@react-three/fiber";
+import { Canvas, useLoader, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import * as THREE from "three";
@@ -13,7 +13,7 @@ const Model = ({ url }) => {
       if (child instanceof THREE.Mesh) {
         // Apply a material that highlights the geometry
         child.material = new THREE.MeshStandardMaterial({
-          color: 0x00ff00,
+          color: 0x808080,
           metalness: 0.5,
           roughness: 0.1,
         });
@@ -24,9 +24,28 @@ const Model = ({ url }) => {
   return <primitive object={obj} ref={modelRef} />;
 };
 
+const CameraSetup = () => {
+  const { camera } = useThree();
+
+  useEffect(() => {
+    // Set the initial camera position
+    camera.position.set(0, 10, 40); // Adjust the z-value to control the initial zoom level
+  }, [camera]);
+
+  return null;
+};
+
 export default function CarView() {
   return (
-    <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }}>
+    <div
+      style={{
+        width: "500px",
+        height: "400px",
+        zIndex: 9999,
+        // overflow: "hidden",
+        // margin: "0 auto",
+      }}
+    >
       <Canvas>
         {/* Lighting setup */}
         <ambientLight intensity={0.4} />
@@ -34,10 +53,17 @@ export default function CarView() {
         <pointLight intensity={0.5} position={[-10, -10, -10]} />
 
         {/* Render the OBJ model */}
-        <Model url="/Fusion.obj" />
+        <Model url="/hand.obj" />
+
+        {/* Camera setup */}
+        <CameraSetup />
 
         {/* Controls for panning, rotating, and zooming */}
-        <OrbitControls />
+        <OrbitControls
+          minDistance={10}
+          maxDistance={100}
+          target={[0, 0, 0]} // Focus on the center of the scene
+        />
       </Canvas>
     </div>
   );

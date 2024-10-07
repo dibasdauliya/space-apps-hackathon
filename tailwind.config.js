@@ -1,3 +1,5 @@
+import { op } from "@tensorflow/tfjs";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -7,13 +9,12 @@ export default {
         sixtyfour: ['"Sixtyfour Convergence"', "sans-serif"],
       },
       backgroundImage: {
-        "space-vibe":
-          "linear-gradient(90deg, #1e3a8a, #3b82f6, #9333ea, #f43f5e)",
+        "space-vibe": "linear-gradient(90deg, #3b82f6, #9333ea, #f43f5e)",
       },
       keyframes: {
         parabolicFlight: {
           "0%": { transform: "translate(0, 0)" },
-          "100%": { transform: "translate(100vw, -80vh)" },
+          "100%": { transform: "translate(0, -80vh)", opacity: 0 },
         },
         cometFlight: {
           "0%": { transform: "translate(0, 0)" },
